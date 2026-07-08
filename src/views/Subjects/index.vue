@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-slate-50 p-6 md:p-10">
+    <MainLayout>
         <div class="max-w-5xl mx-auto">
             <!-- Header -->
             <div class="flex justify-between items-center mb-8">
@@ -40,7 +40,7 @@
                     </div>
                     <h3 class="text-lg font-bold text-slate-800 mb-1 line-clamp-1">{{ sub.name }}</h3>
                     <p class="text-sm text-slate-400 font-medium">Số tín chỉ: <span class="text-slate-600">{{
-                            sub.credits }}</span></p>
+                        sub.credits }}</span></p>
                 </div>
             </div>
 
@@ -85,12 +85,13 @@
             </div>
 
         </div>
-    </div>
+    </MainLayout>
 </template>
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import axios from 'axios'
+import MainLayout from '../../components/MainLayout.vue'
 
 const subjects = ref([])
 const loading = ref(true)
