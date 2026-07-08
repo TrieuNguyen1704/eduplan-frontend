@@ -29,6 +29,12 @@ const routes = [
       name: 'Subjects',
       component: () => import('../views/Subjects/index.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+        path: '/subjects/:id',
+        name: 'SubjectWorkspace',
+        component: () => import('../views/Subjects/Workspace.vue'),
+        meta: { requiresAuth: true }
     }
 ]
 
