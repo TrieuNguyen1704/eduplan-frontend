@@ -1,6 +1,7 @@
 <template>
     <MainLayout>
-        <div class="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+        <!-- Đã tinh chỉnh lại padding và min-height để căn giữa chuẩn xác khi nằm trong MainLayout -->
+        <div class="flex items-center justify-center py-12 px-4">
             <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
                 <div class="text-center mb-8">
                     <h2 class="text-3xl font-extrabold text-slate-800">Chào mừng trở lại</h2>
@@ -22,14 +23,21 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">Mật khẩu</label>
+                        <!-- NÚT QUÊN MẬT KHẨU ĐƯỢC CHÈN NGANG HÀNG VỚI LABEL MẬT KHẨU -->
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="block text-sm font-medium text-slate-700">Mật khẩu</label>
+                            <router-link to="/forgot-password"
+                                class="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline transition">
+                                Quên mật khẩu?
+                            </router-link>
+                        </div>
                         <input v-model="password" type="password" required
                             class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition"
                             placeholder="••••••••" />
                     </div>
 
                     <button type="submit" :disabled="authStore.loading"
-                        class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-md shadow-blue-200 transition disabled:opacity-50">
+                        class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-md shadow-blue-200 transition disabled:opacity-50 cursor-pointer">
                         {{ authStore.loading ? 'Đang xử lý...' : 'Đăng nhập' }}
                     </button>
                 </form>
@@ -42,7 +50,6 @@
             </div>
         </div>
     </MainLayout>
-
 </template>
 
 <script setup>
