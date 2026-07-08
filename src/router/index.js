@@ -25,15 +25,27 @@ const routes = [
     },
     // THÊM ROUTE MÔN HỌC VÀO ĐÂY
     {
-      path: '/subjects',
-      name: 'Subjects',
-      component: () => import('../views/Subjects/index.vue'),
-      meta: { requiresAuth: true }
+        path: '/subjects',
+        name: 'Subjects',
+        component: () => import('../views/Subjects/index.vue'),
+        meta: { requiresAuth: true }
     },
     {
         path: '/subjects/:id',
         name: 'SubjectWorkspace',
         component: () => import('../views/Subjects/Workspace.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/subjects/:id',
+        name: 'SubjectWorkspace',
+        component: () => import('../views/Subjects/Workspace.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/calendar',
+        name: 'Calendar',
+        component: () => import('../views/Calendar/index.vue'),
         meta: { requiresAuth: true }
     }
 ]
