@@ -59,6 +59,12 @@ const routes = [
         name: 'Flashcards', 
         component: () => import('../views/Flashcards/index.vue'), 
         meta: { requiresAuth: true } 
+    },
+    { 
+        path: '/pomodoro', 
+        name: 'Pomodoro', 
+        component: () => import('../views/Pomodoro/index.vue'), 
+        meta: { requiresAuth: true } 
     }
 ]
 

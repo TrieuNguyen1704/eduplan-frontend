@@ -51,6 +51,10 @@
                                 :class="$route.path.startsWith('/flashcards') ? 'bg-purple-50 text-purple-600 font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'">
                                 📇 Flashcard AI
                             </router-link>
+                            <router-link to="/pomodoro" class="px-4 py-2 rounded-xl text-sm font-semibold transition"
+                                :class="$route.path.startsWith('/pomodoro') ? 'bg-rose-50 text-rose-600 font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'">
+                                ⏱️ Pomodoro
+                            </router-link>
                         </nav>
                     </div>
 
