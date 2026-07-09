@@ -42,10 +42,14 @@
                                 :class="$route.path.startsWith('/subjects') ? 'bg-blue-50 text-blue-600 font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'">
                                 📚 Môn học & Kanban
                             </router-link>
-                            
+
                             <router-link to="/calendar" class="px-4 py-2 rounded-xl text-sm font-semibold transition"
                                 :class="$route.path === '/calendar' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'">
                                 📅 Lịch Hạn Chót
+                            </router-link>
+                            <router-link to="/flashcards" class="px-4 py-2 rounded-xl text-sm font-semibold transition"
+                                :class="$route.path.startsWith('/flashcards') ? 'bg-purple-50 text-purple-600 font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'">
+                                📇 Flashcard AI
                             </router-link>
                         </nav>
                     </div>

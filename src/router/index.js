@@ -53,6 +53,12 @@ const routes = [
         name: 'Calendar',
         component: () => import('../views/Calendar/index.vue'),
         meta: { requiresAuth: true }
+    },
+    { 
+        path: '/flashcards', 
+        name: 'Flashcards', 
+        component: () => import('../views/Flashcards/index.vue'), 
+        meta: { requiresAuth: true } 
     }
 ]
 
