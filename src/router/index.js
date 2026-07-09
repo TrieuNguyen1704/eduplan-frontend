@@ -23,6 +23,12 @@ const routes = [
         component: () => import('../views/auth/Register/index.vue'),
         meta: { guest: true }
     },
+    { 
+        path: '/admin', 
+        name: 'Admin', 
+        component: () => import('../views/Admin/index.vue'), 
+        meta: { requiresAuth: true } 
+    },
     {
         path: '/dashboard',
         name: 'Dashboard',
@@ -34,12 +40,6 @@ const routes = [
         path: '/subjects',
         name: 'Subjects',
         component: () => import('../views/Subjects/index.vue'),
-        meta: { requiresAuth: true }
-    },
-    {
-        path: '/subjects/:id',
-        name: 'SubjectWorkspace',
-        component: () => import('../views/Subjects/Workspace.vue'),
         meta: { requiresAuth: true }
     },
     {
@@ -76,12 +76,27 @@ const router = createRouter({
 // Hộ chiếu bảo vệ tuyến đường (Navigation Guard)
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('access_token')
+    const userStr = localStorage.getItem('user')
+    const user = userStr ? JSON.parse(userStr) : null
 
+    // 1. Kiểm tra nếu trang cần đăng nhập mà chưa có token -> Về Login
     if (to.matched.some(record => record.meta.requiresAuth) && !token) {
         next('/login')
-    } else if (to.matched.some(record => record.meta.guest) && token) {
+    } 
+    // 2. Nếu đã có token mà vào trang Guest (như Login, Register) -> Về Dashboard
+    else if (to.matched.some(record => record.meta.guest) && token) {
         next('/dashboard')
-    } else {
+    } 
+    // 3. LÍNH GÁC TRẠM ADMIN: Chặn sinh viên lén gõ /admin
+    else if (to.path.startsWith('/admin')) {
+        if (!user || (user.role !== 'admin' && user.email !== 'shellingofficial@gmail.com')) {
+            alert('🚫 Cảnh báo: Khu vực hạn chế! Bạn không có quyền truy cập trang Quản Trị.')
+            return next('/dashboard') // Đá ngược về Dashboard sinh viên
+        }
+        next()
+    } 
+    // 4. Các trường hợp còn lại -> Cho qua
+    else {
         next()
     }
 })
