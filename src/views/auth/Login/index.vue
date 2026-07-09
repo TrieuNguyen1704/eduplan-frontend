@@ -1,6 +1,5 @@
 <template>
     <MainLayout>
-        <!-- Đã tinh chỉnh lại padding và min-height để căn giữa chuẩn xác khi nằm trong MainLayout -->
         <div class="flex items-center justify-center py-12 px-4">
             <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
                 <div class="text-center mb-8">
@@ -8,7 +7,6 @@
                     <p class="text-slate-500 mt-2 text-sm">Đăng nhập vào hệ thống EduPlan</p>
                 </div>
 
-                <!-- Hiển thị thông báo lỗi nếu có -->
                 <div v-if="authStore.error"
                     class="mb-4 p-3 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm rounded">
                     {{ authStore.error }}
@@ -23,7 +21,6 @@
                     </div>
 
                     <div>
-                        <!-- NÚT QUÊN MẬT KHẨU ĐƯỢC CHÈN NGANG HÀNG VỚI LABEL MẬT KHẨU -->
                         <div class="flex justify-between items-center mb-1">
                             <label class="block text-sm font-medium text-slate-700">Mật khẩu</label>
                             <router-link to="/forgot-password"
@@ -58,6 +55,7 @@ import { useAuthStore } from '../../../stores/auth'
 import { useRouter } from 'vue-router'
 import MainLayout from '../../../components/MainLayout.vue'
 
+
 const authStore = useAuthStore()
 const router = useRouter()
 
@@ -67,7 +65,17 @@ const password = ref('')
 const handleLogin = async () => {
     const success = await authStore.login(email.value, password.value)
     if (success) {
-        router.push('/dashboard')
+        // Ép dữ liệu mới nhất từ store
+        const user = authStore.user 
+        
+        console.log("DEBUG ROLE:", user.role); // Xem nó in ra gì
+
+        if (user.role === 'admin' || user.email === 'shellingofficial@gmail.com') {
+            // Thay vì dùng router.push, dùng cách này để ép trình duyệt nhảy trang
+            window.location.href = '/admin'; 
+        } else {
+            window.location.href = '/dashboard';
+        }
     }
 }
 </script>

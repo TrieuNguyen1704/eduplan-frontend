@@ -55,6 +55,12 @@
                                 :class="$route.path.startsWith('/pomodoro') ? 'bg-rose-50 text-rose-600 font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'">
                                 ⏱️ Pomodoro
                             </router-link>
+                            <!-- Nút Admin (Dành riêng cho Quản trị viên) -->
+                            <router-link to="/admin"
+                                class="px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-1.5"
+                                :class="$route.path.startsWith('/admin') ? 'bg-slate-900 text-amber-400 font-black shadow-sm' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'">
+                                <span>👑 Quản Trị</span>
+                            </router-link>
                         </nav>
                     </div>
 
